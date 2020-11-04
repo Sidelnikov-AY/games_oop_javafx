@@ -4,9 +4,9 @@ public class Win {
     public static boolean check(int[][] board) {
         boolean rsl = false;
         for (int index = 0; index < board.length; index++) {
-            boolean horizontal1 = monoHorizontal(board, index);
-            boolean vertical1 = monoVertical(board, index);
-            if ((board[index][index] == 1) && (horizontal1 || vertical1)) {
+            boolean isHorizontalWin = monoHorizontal(board, index);
+            boolean isVerticalWin = monoVertical(board, index);
+            if ((board[index][index] == 1) && (isHorizontalWin || isVerticalWin)) {
                 rsl = true;
                 break;
             }
