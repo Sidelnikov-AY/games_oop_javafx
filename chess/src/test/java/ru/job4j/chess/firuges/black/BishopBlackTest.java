@@ -43,5 +43,13 @@ public class BishopBlackTest {
 
     }
 
+    @Test (expected = IllegalStateException.class)
+    public void WhenWayIsNotOk() {
+        BishopBlack BB = new BishopBlack(Cell.F1);
+        BB.way(Cell.E5);
+
+
+    }
+
 
 }

@@ -17,34 +17,27 @@ public class BishopBlack implements Figure {
 
     @Override
     public Cell[] way(Cell dest) {
-        int size = Math.abs(dest.getX() - position().getX());;
-        int x = 0;
-        int y = 0;
-        Cell[] steps = new Cell[size];
-        int deltaX = dest.getX() > position().getX() ? 1: -1;
-        int deltaY = dest.getY() > position().getY() ? 1: -1;
-        if (Math.abs(dest.getX() - position().getX()) != Math.abs(dest.getY() - position().getY())) {
+        if (!isDiagonal(position, dest)) {
             throw new IllegalStateException(
-                    String.format("Could not way by diagonal from %s to %s", position, dest)
+                    String.format("Could not move by diagonal from %s to %s", position, dest)
             );
-        } else {
-            for (int index = 0; index < size; index++) {
-                if (deltaX == 1) {
-                    x = index + deltaX + 2;
-                    y = 7 - index - deltaY - 2;
-                } else {
-                    x = 7 - index + deltaX - 2;
-                    y = 7 - index + deltaY;
-                    }
-                steps[index] = Cell.findBy(x, y);
-            }
         }
-
-        return steps;
+        int size = Math.abs(dest.getX() - position.getX());;
+        Cell[] steps = new Cell[size];
+        int deltaX = dest.getX() > position.getX() ? 1: -1;
+        int deltaY = dest.getY() > position.getY() ? 1: -1;
+        for (int index = 0; index < size; index++) {
+                steps[index] = Cell.findBy(position.getX() + (index + 1) * deltaX, position.getY() + (index + 1) * deltaY);
+            }
+           return steps;
     }
 
     public boolean isDiagonal(Cell source, Cell dest) {
-        return false;
+        boolean result = false;
+        if (Math.abs(dest.getX() - source.getX()) == Math.abs(dest.getY() - source.getY())) {
+            result = true;
+        }
+        return result;
     }
 
     @Override
