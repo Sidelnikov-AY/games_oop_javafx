@@ -29,7 +29,7 @@ public class LogicTest {
         logic.move(Cell.C1, Cell.E3);
     }
 
-    @Test (expected = IllegalStateException.class)
+    @Test (expected = ImpossibleMoveException.class)
     public void WhenMoveErrorImposMove() throws FigureNotFoundException, OccupiedCellException, ImpossibleMoveException {
         Logic logic = new Logic();
         logic.add(new BishopBlack(Cell.C1));
